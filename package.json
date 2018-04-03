@@ -1,16 +1,16 @@
 {
-  "name": "vue-ws",
+  "name": "vue-smart-websocket",
   "version": "0.0.1",
   "description": "A Vue.js Plugin",
-  "main": "dist/vue-ws.common.js",
-  "module": "dist/vue-ws.esm.js",
-  "unpkg": "dist/vue-ws.js",
+  "main": "dist/vue-smart-websocket.common.js",
+  "module": "dist/vue-smart-websocket.esm.js",
+  "unpkg": "dist/vue-smart-websocket.js",
   "files": [
     "src",
-    "dist/vue-ws.js",
-    "dist/vue-ws.min.js",
-    "dist/vue-ws.esm.js",
-    "dist/vue-ws.common.js"
+    "dist/vue-smart-websocket.js",
+    "dist/vue-smart-websocket.min.js",
+    "dist/vue-smart-websocket.esm.js",
+    "dist/vue-smart-websocket.common.js"
   ],
   "scripts": {
     "dev": "node examples/server.js",
@@ -19,11 +19,12 @@
     "lint": "eslint src examples --ext .vue,.js",
     "test": "npm run lint && npm run test:unit ",
     "test:unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+    "version": "npm run build && git add dist",
     "commit": "git-cz"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/xsdlr/vue-ws"
+    "url": "https://github.com/xsdlr/vue-websocket"
   },
   "keywords": [
     "vue",
@@ -36,6 +37,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
+    "smart-websocket": "^1.0.1",
     "vue": "latest"
   },
   "devDependencies": {
@@ -71,6 +73,7 @@
     "karma-webpack": "^2.0.4",
     "mocha": "^3.5.3",
     "power-assert": "^1.4.4",
+    "prettier": "^1.11.1",
     "rollup": "^0.41.5",
     "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "^8.0.2",
