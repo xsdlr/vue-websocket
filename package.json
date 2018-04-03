@@ -1,6 +1,6 @@
 {
   "name": "vue-smart-websocket",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A Vue.js Plugin",
   "main": "dist/vue-smart-websocket.common.js",
   "module": "dist/vue-smart-websocket.esm.js",
