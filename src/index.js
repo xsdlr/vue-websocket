@@ -53,15 +53,16 @@ export default class WS {
         const listenerType = listener.type
         return isRegExp(listenerType) ? listenerType.test(type) : listenerType === type
       })
-      .forEach(({ key }) => {
-        this.bus.$emit(key, payload)
+      .forEach(({ event }) => {
+        this.bus.$emit(event, payload)
       })
   }
   on(vm, type, cb) {
     const key = this.genKey(vm)
-    const listeners = this.listeners.concat({ key, type })
+    const event = `${key}:${type}`
+    const listeners = this.listeners.concat({ key, type, event })
     this.listeners = listeners
-    this.bus.$on(key, cb)
+    this.bus.$on(event, cb)
     this.debug && console.log('[ws] addListeners', listeners, this.listeners)
   }
   off(vm, type) {
@@ -71,7 +72,7 @@ export default class WS {
     })
     const { filter = [], remain = [] } = listeners
     this.listeners = remain
-    filter.forEach(({ key }) => this.bus.$off(key))
+    filter.forEach(({ event }) => this.bus.$off(event))
     this.debug && filter.length && console.log('[ws] removeListeners', filter, this.listeners)
   }
   send(json) {
