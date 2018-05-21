@@ -1,26 +1,16 @@
-const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true'
 
 module.exports = {
-
   devtool: 'inline-source-map',
-
-  entry: fs.readdirSync(__dirname).reduce((entries, dir) => {
-    const fullDir = path.join(__dirname, dir)
-    const entry = path.join(fullDir, 'app.js')
-    if (fs.statSync(fullDir).isDirectory() && fs.existsSync(entry)) {
-      entries[dir] = ['es6-promise/auto', entry, hotMiddlewareScript]
-    }
-
-    return entries
-  }, {}),
-
+  entry: {
+    app: ['es6-promise/auto', path.join(__dirname, 'app.js'), hotMiddlewareScript]
+  },
   output: {
     path: path.join(__dirname, '__build__'),
-    filename: '[name].js',
+    filename: 'index.js',
     chunkFilename: '[id].chunk.js',
     publicPath: '/__build__/'
   },
@@ -34,7 +24,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      'vue': 'vue/dist/vue.common.js',
+      vue: 'vue/dist/vue.common.js',
       'vue-plugin': path.join(__dirname, '..', 'src')
     }
   },
@@ -56,5 +46,4 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsPlugin()
   ]
-
 }

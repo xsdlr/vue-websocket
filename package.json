@@ -14,7 +14,6 @@
   ],
   "scripts": {
     "dev": "node examples/server.js",
-    "prepublish": "npm run build",
     "build": "node build/build",
     "lint": "eslint src examples --ext .vue,.js",
     "test": "npm run lint && npm run test:unit ",
@@ -64,6 +63,7 @@
     "eslint-plugin-vue": "^3.13.0",
     "express": "^4.15.4",
     "express-urlrewrite": "^1.2.0",
+    "express-ws": "^3.0.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "karma": "^1.7.1",
     "karma-coverage": "^1.1.1",
