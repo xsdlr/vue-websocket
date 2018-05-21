@@ -1,5 +1,5 @@
 /*
- * vue-smart-websocket v1.0.0
+ * vue-smart-websocket v1.1.0
  * (c) 2018 xsdlr(xsdlr123@gmail.com)
  * Released under the MIT License.
  */
@@ -158,19 +158,21 @@ WS.prototype.emit = function emit (type, payload) {
         var listenerType = listener.type;
         return lodash.isRegExp(listenerType) ? listenerType.test(type) : listenerType === type;
     }).forEach(function (ref) {
-            var key = ref.key;
+            var event = ref.event;
 
-        this$1.bus.$emit(key, payload);
+        this$1.bus.$emit(event, payload);
     });
 };
 WS.prototype.on = function on (vm, type, cb) {
     var key = this.genKey(vm);
+    var event = key + ":" + type;
     var listeners = this.listeners.concat({
         key: key,
-        type: type
+        type: type,
+        event: event
     });
     this.listeners = listeners;
-    this.bus.$on(key, cb);
+    this.bus.$on(event, cb);
     this.debug && console.log('[ws] addListeners', listeners, this.listeners);
 };
 WS.prototype.off = function off (vm, type) {
@@ -187,9 +189,9 @@ WS.prototype.off = function off (vm, type) {
         var remain = listeners.remain; if ( remain === void 0 ) remain = [];
     this.listeners = remain;
     filter.forEach(function (ref) {
-            var key = ref.key;
+            var event = ref.event;
 
-            return this$1.bus.$off(key);
+            return this$1.bus.$off(event);
         });
     this.debug && filter.length && console.log('[ws] removeListeners', filter, this.listeners);
 };
@@ -198,7 +200,7 @@ WS.prototype.send = function send (json) {
 };
 
 WS.install = install;
-WS.version = '1.0.0';
+WS.version = '1.1.0';
 if (inBrowser && window.Vue) {
     window.Vue.use(WS);
 }
