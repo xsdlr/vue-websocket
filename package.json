@@ -14,7 +14,6 @@
   ],
   "scripts": {
     "dev": "node examples/server.js",
-    "prepublish": "npm run build",
     "build": "node build/build",
     "lint": "eslint src examples --ext .vue,.js",
     "test": "npm run lint && npm run test:unit ",
