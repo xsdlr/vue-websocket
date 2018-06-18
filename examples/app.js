@@ -10,7 +10,7 @@ const ws = new VueSocket({
   maxReconnectCount: 3,
   parse(data) {
     // 自定义解析ws返回数据
-    // 需要和服务端协商传输数据格式都是json
+    // 需要和服务端协商传输数据格式
     try {
       const { type, message } = JSON.parse(data)
       return [type, message]
