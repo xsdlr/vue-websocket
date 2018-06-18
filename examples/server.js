@@ -21,7 +21,7 @@ app.use(express.static(__dirname))
 app.ws('/ws', function(ws) {
   ws.send(
     JSON.stringify({
-      type: 'reply',
+      type: 'welcome',
       message: 'hello world'
     })
   )
@@ -30,6 +30,12 @@ app.ws('/ws', function(ws) {
       JSON.stringify({
         type: 'echo',
         message
+      })
+    )
+    ws.send(
+      JSON.stringify({
+        type: 'reverseEcho',
+        message: [...message].reverse().join('')
       })
     )
   })
