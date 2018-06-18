@@ -1,5 +1,5 @@
 /*
- * vue-smart-websocket v1.1.0
+ * vue-smart-websocket v1.1.1
  * (c) 2018 xsdlr(xsdlr123@gmail.com)
  * Released under the MIT License.
  */
@@ -199,7 +199,7 @@ WS.prototype.send = function send (json) {
 };
 
 WS.install = install;
-WS.version = '1.1.0';
+WS.version = '1.1.1';
 if (inBrowser && window.Vue) {
     window.Vue.use(WS);
 }
